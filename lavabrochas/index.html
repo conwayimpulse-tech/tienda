@@ -61,17 +61,18 @@ section{padding:48px 0}
 .main-img img{width:100%;height:100%;object-fit:contain}
 .sticker{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--wine);font-weight:800;font-size:13px;border-radius:99px;padding:7px 12px;transform:rotate(-6deg);box-shadow:0 6px 16px -8px rgba(0,0,0,.35)}
 /* Sello de envío gratis: estrella con latido */
-.shipbadge{position:absolute;top:8px;right:8px;width:112px;height:112px;display:grid;place-items:center;text-align:center;color:#fff;
+.shipbadge{position:absolute;top:6px;right:6px;width:124px;height:124px;display:grid;place-items:center;text-align:center;color:#fff;
   background:radial-gradient(circle at 35% 30%,#ff6f97 0%,#e0346a 55%,#b3184d 100%);
   clip-path:polygon(50.0% 0.0%,59.6% 8.1%,71.7% 5.0%,76.8% 16.4%,89.1% 18.8%,88.7% 31.3%,98.7% 38.9%,93.0% 50.0%,98.7% 61.1%,88.7% 68.7%,89.1% 81.2%,76.8% 83.6%,71.7% 95.0%,59.6% 91.9%,50.0% 100.0%,40.4% 91.9%,28.3% 95.0%,23.2% 83.6%,10.9% 81.2%,11.3% 68.7%,1.3% 61.1%,7.0% 50.0%,1.3% 38.9%,11.3% 31.3%,10.9% 18.8%,23.2% 16.4%,28.3% 5.0%,40.4% 8.1%);
   animation:beat 1.6s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(179,24,77,.45))}
-.shipbadge div{line-height:1;font-weight:800;transform:rotate(8deg)}
-.shipbadge .s1{font-size:22px}
-.shipbadge .s2{font-size:13px;letter-spacing:.04em}
-.shipbadge .s3{font-size:21px;font-family:var(--f-display);font-style:italic}
-.shipbadge .s4{font-size:8.5px;font-weight:700;opacity:.95;margin-top:3px;letter-spacing:.02em}
+.shipbadge>div{transform:rotate(8deg)}
+.shipbadge div{line-height:1;font-weight:800}
+.shipbadge .s1{font-size:18px}
+.shipbadge .s2{font-size:12px;letter-spacing:.05em;margin-top:1px}
+.shipbadge .s3{font-size:20px;font-family:var(--f-display);font-style:italic}
+.shipbadge .s4{font-size:10px;font-weight:700;line-height:1.05;margin-top:2px}
 @keyframes beat{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.09) rotate(-4deg)}}
-@media(max-width:480px){.shipbadge{width:104px;height:104px}.shipbadge .s3{font-size:18px}.shipbadge .s1{font-size:19px}}
+@media(max-width:480px){.shipbadge{width:118px;height:118px}.shipbadge .s3{font-size:18px}.shipbadge .s1{font-size:16px}.shipbadge .s4{font-size:9.5px}}
 .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .thumbs button{padding:0;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;aspect-ratio:1/1;overflow:hidden}
 .thumbs button[aria-current="true"]{border-color:var(--rose-dark)}
@@ -225,7 +226,7 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
     <div class="gallery">
       <div class="main-img"><img id="mainImg" src="img/producto.webp" alt="Lavabrochas eléctrico rosado con brochas dentro del vaso y su caja" width="1000" height="1000"></div>
       <span class="sticker">💗 Precio de lanzamiento</span>
-      <div class="shipbadge" aria-label="Envío gratis a toda Colombia"><div><div class="s1">🚚</div><div class="s2">ENVÍO</div><div class="s3">¡Gratis!</div><div class="s4">TODA COLOMBIA</div></div></div>
+      <div class="shipbadge" aria-label="Envío gratis a toda Colombia"><div><div class="s1">🚚</div><div class="s2">ENVÍO</div><div class="s3">¡Gratis!</div><div class="s4">a toda<br>Colombia</div></div></div>
       <div class="thumbs" role="group" aria-label="Fotos del producto">
         <button type="button" aria-current="true" data-src="img/producto.webp" data-alt="Lavabrochas eléctrico rosado con su caja"><img src="img/producto.webp" alt=""></button>
         <button type="button" data-src="img/modos.webp" data-alt="Modo automático y modo manual, con el antes y después de una brocha y una esponja"><img src="img/modos.webp" alt=""></button>
