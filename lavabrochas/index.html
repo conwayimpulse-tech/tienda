@@ -94,6 +94,7 @@ section{padding:48px 0}
 .trust b{display:block;font-size:19px}
 
 /* ---- Botones ---- */
+[hidden]{display:none!important}
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,var(--rose) 0%,var(--rose-dark) 100%);color:#fff;border:0;border-radius:16px;padding:18px 20px;font:800 17.5px var(--f-body);cursor:pointer;text-decoration:none;box-shadow:0 12px 26px -12px rgba(193,58,94,.85);transition:transform .12s}
 .btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite}
 @keyframes shine{0%,60%{left:-60%}100%{left:130%}}
@@ -150,6 +151,44 @@ input:focus,select:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 
 .consent input{margin-top:3px;accent-color:var(--rose-dark);width:17px;height:17px;flex:none}
 .delivery{background:var(--ok-soft);color:var(--ok);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700;text-align:center}
 .secure{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);font-weight:600}
+
+/* ---- Reseñas ---- */
+.rev-box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.rev-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.rev-summary{display:flex;align-items:center;gap:10px}
+.rev-avg{font-family:var(--f-display);font-size:42px;font-weight:700;color:var(--wine);line-height:1}
+.stars{color:var(--gold);letter-spacing:2px;font-size:18px}
+.rev-count{font-size:13px;color:var(--muted);font-weight:600}
+.rev-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.rev-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.rev-list{grid-template-columns:1fr}}
+.rev-list:empty{display:none}
+.rev{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fffafb;display:flex;flex-direction:column}
+.rev img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff}
+.rev-body{padding:14px;display:flex;flex-direction:column;gap:6px}
+.rev-body p{margin:0}
+.rev-who{font-size:13.5px;font-weight:700}
+.rev-who span{font-weight:500;color:var(--muted)}
+.verified{display:inline-block;font-size:11.5px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:99px;padding:2px 8px}
+.rev-empty{text-align:center;background:var(--rose-soft);border-radius:16px;padding:18px;color:var(--wine)}
+.rev-empty p{margin:6px 0 0}
+.rev-empty[hidden]{display:none}
+.btn-outline{background:#fff;color:var(--rose-dark);border:2px solid var(--rose-dark);box-shadow:none}
+.btn-outline::after{background:linear-gradient(100deg,transparent,rgba(193,58,94,.15),transparent)}
+.rev-form{display:flex;flex-direction:column;gap:12px;border-top:1px dashed var(--line);padding-top:16px}
+.rev-form[hidden]{display:none}
+.rev-form h3{font-size:22px}
+textarea{font:16px var(--f-body);padding:13px 14px;border:1.5px solid #e9d0d6;border-radius:12px;background:#fff;color:var(--ink);width:100%;resize:vertical}
+textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-soft)}
+.star-pick{display:flex;gap:4px}
+.star-pick button{background:none;border:0;font-size:38px;line-height:1;color:#e6d3d7;cursor:pointer;padding:0 2px}
+.star-pick button.on{color:var(--gold)}
+.photo-pick input{font-size:14px}
+.photo-pick img{width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.rev-thanks{background:var(--ok-soft);color:var(--ok);border-radius:14px;padding:14px;text-align:center}
+.rev-thanks[hidden]{display:none}
+.hero-rating{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted);text-decoration:none}
+.hero-rating[hidden]{display:none}
 
 /* ---- Contenido ---- */
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
@@ -237,6 +276,7 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
     <div class="hero-copy">
       <span class="kicker">✨ El secreto de un maquillaje impecable</span>
       <h1>Brochas como nuevas en minutos, <em>sin frotar a mano</em></h1>
+      <a class="hero-rating" id="heroRating" href="#resenas" hidden><span class="stars" id="heroStars">★★★★★</span><span id="heroRatingTxt"></span></a>
       <p class="promise">Pones agua y jabón, metes tus brochas y tocas un botón. <b>Él lava, tú te dedicas a ti.</b></p>
       <ul class="bullets">
         <li><span><b>Varias brochas a la vez:</b> de ojos, cejas, base y rubor.</span></li>
@@ -343,6 +383,54 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEÑAS (reales, moderadas desde la hoja "Reseñas") ============ -->
+<section id="resenas" style="padding-top:8px">
+  <div class="wrap">
+    <div class="rev-box">
+      <div class="rev-head">
+        <div>
+          <span class="kicker">Opiniones de clientas</span>
+          <h2 style="margin-top:6px">Lo que dicen <em>ellas</em></h2>
+        </div>
+        <div class="rev-summary" id="revSummary" hidden>
+          <div class="rev-avg" id="revAvg">5,0</div>
+          <div><div class="stars" id="revAvgStars">★★★★★</div><div class="rev-count" id="revCount">0 reseñas</div></div>
+        </div>
+      </div>
+
+      <div class="rev-list" id="revList"></div>
+      <div class="rev-empty" id="revEmpty">
+        <div style="font-size:34px">💗</div>
+        <p><b>Producto nuevo en nuestra tienda.</b><br>Aquí vas a ver las reseñas y fotos de las clientas que ya lo recibieron. ¿Ya tienes el tuyo? Cuéntanos qué tal te fue.</p>
+      </div>
+      <button type="button" class="btn btn-outline" id="revOpen">⭐ Escribir una reseña</button>
+
+      <form id="revForm" class="rev-form" hidden novalidate>
+        <h3>Cuéntanos tu experiencia</h3>
+        <div class="star-pick" role="radiogroup" aria-label="Calificación">
+          <button type="button" data-v="1" aria-label="1 estrella">★</button><button type="button" data-v="2" aria-label="2 estrellas">★</button><button type="button" data-v="3" aria-label="3 estrellas">★</button><button type="button" data-v="4" aria-label="4 estrellas">★</button><button type="button" data-v="5" aria-label="5 estrellas">★</button>
+        </div>
+        <span class="err" data-rev="estrellas"></span>
+        <div class="row2">
+          <label>Tu nombre<input type="text" name="nombre" autocomplete="name" placeholder="Ej.: Laura Gómez"><span class="err" data-rev="nombre"></span></label>
+          <label>Ciudad<input type="text" name="ciudad" placeholder="Ej.: Medellín"><span class="err" data-rev="ciudad"></span></label>
+        </div>
+        <label>Tu reseña<textarea name="texto" rows="4" maxlength="1000" placeholder="¿Cómo te fue con el lavabrochas? ¿Qué es lo que más te gustó?"></textarea><span class="err" data-rev="texto"></span></label>
+        <label>Celular con el que compraste <span style="font-weight:400;color:var(--muted)">(opcional, no se publica: sirve para marcar "Compra verificada")</span><input type="tel" name="celular" inputmode="numeric" maxlength="13" placeholder="Ej.: 3001234567"></label>
+        <label class="photo-pick">📸 Agrega una foto de tu lavabrochas <span style="font-weight:400;color:var(--muted)">(opcional)</span>
+          <input type="file" name="foto" accept="image/*" id="revPhoto">
+          <img id="revPreview" alt="Vista previa de tu foto" hidden>
+        </label>
+        <label class="consent"><input type="checkbox" name="consent"> <span>Autorizo a Conway Impulse a publicar en esta página mi nombre (solo nombre e inicial del apellido), ciudad, reseña y foto.</span></label>
+        <span class="err" data-rev="consent"></span>
+        <button class="btn" type="submit" id="revSubmit">Enviar mi reseña</button>
+        <p class="under" style="margin:0">Revisamos cada reseña antes de publicarla.</p>
+      </form>
+      <div class="rev-thanks" id="revThanks" hidden>💗 <b>¡Gracias por tu reseña!</b> La publicaremos cuando la revisemos.</div>
     </div>
   </div>
 </section>
@@ -606,6 +694,93 @@ if (CONFIG.PIXEL_ID) {
   let ic = false;
   document.addEventListener("focusin", e => { if (!ic && e.target.closest("#orderForm")) { ic = true; fbq('track','InitiateCheckout',{value:selected().price,currency:'COP'}); } });
 }
+
+// ======================= RESEÑAS =======================
+const starsTxt = n => "★★★★★".slice(0, Math.round(n)) + "☆☆☆☆☆".slice(0, 5 - Math.round(n));
+function hace(fecha){
+  const d = new Date(fecha); if (isNaN(d)) return "";
+  const dias = Math.floor((Date.now() - d) / 86400000);
+  return dias < 1 ? "hoy" : dias === 1 ? "ayer" : dias < 30 ? "hace " + dias + " días" : d.toLocaleDateString("es-CO",{day:"numeric",month:"short",year:"numeric"});
+}
+function renderReviews(lista){
+  // Primero las que tienen foto, luego las más recientes
+  lista.sort((a,b) => (!!b.foto - !!a.foto) || (new Date(b.fecha) - new Date(a.fecha)));
+  const box = $("#revList"); box.textContent = "";
+  lista.forEach(r => {
+    const art = document.createElement("article"); art.className = "rev";
+    if (r.foto && /^data:image\//.test(r.foto)) { const im = document.createElement("img"); im.src = r.foto; im.alt = "Foto de " + r.nombre; im.loading = "lazy"; art.appendChild(im); }
+    const body = document.createElement("div"); body.className = "rev-body";
+    const st = document.createElement("div"); st.className = "stars"; st.textContent = starsTxt(r.estrellas); body.appendChild(st);
+    const p = document.createElement("p"); p.textContent = r.texto; body.appendChild(p);
+    const who = document.createElement("div"); who.className = "rev-who"; who.textContent = r.nombre;
+    const sp = document.createElement("span"); sp.textContent = (r.ciudad ? " · " + r.ciudad : "") + (hace(r.fecha) ? " · " + hace(r.fecha) : ""); who.appendChild(sp);
+    body.appendChild(who);
+    if (r.verificada) { const v = document.createElement("span"); v.className = "verified"; v.textContent = "✔ Compra verificada"; body.appendChild(v); }
+    art.appendChild(body); box.appendChild(art);
+  });
+  const n = lista.length;
+  $("#revEmpty").hidden = n > 0;
+  if (n) {
+    const avg = lista.reduce((s,r) => s + Number(r.estrellas), 0) / n;
+    const avgTxt = avg.toFixed(1).replace(".", ",");
+    $("#revSummary").hidden = false;
+    $("#revAvg").textContent = avgTxt; $("#revAvgStars").textContent = starsTxt(avg);
+    $("#revCount").textContent = n + (n === 1 ? " reseña" : " reseñas");
+    $("#heroRating").hidden = false; $("#heroStars").textContent = starsTxt(avg);
+    $("#heroRatingTxt").textContent = avgTxt + " · " + n + (n === 1 ? " reseña de clienta" : " reseñas de clientas");
+  }
+}
+if (CONFIG.SHEETS_URL) {
+  fetch(CONFIG.SHEETS_URL + "?accion=resenas").then(r => r.json()).then(renderReviews).catch(err => console.warn("No se pudieron cargar las reseñas", err));
+}
+
+// Abrir formulario y elegir estrellas
+let revStars = 0;
+$("#revOpen").addEventListener("click", () => { $("#revForm").hidden = false; $("#revOpen").hidden = true; $("#revForm").scrollIntoView({behavior:"smooth", block:"start"}); });
+$$(".star-pick button").forEach(b => b.addEventListener("click", () => {
+  revStars = +b.dataset.v;
+  $$(".star-pick button").forEach(x => { x.classList.toggle("on", +x.dataset.v <= revStars); x.setAttribute("aria-checked", +x.dataset.v === revStars); });
+}));
+
+// Foto: se reduce en el celular para que pese poco (máx. ~45 KB)
+let revFoto = "";
+function loadImg(file){ return new Promise((res, rej) => { const u = URL.createObjectURL(file); const im = new Image(); im.onload = () => { URL.revokeObjectURL(u); res(im); }; im.onerror = rej; im.src = u; }); }
+async function compress(file){
+  const im = await loadImg(file);
+  for (const max of [640, 520, 420, 340]) {
+    const k = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight));
+    const c = document.createElement("canvas"); c.width = Math.round(im.naturalWidth * k); c.height = Math.round(im.naturalHeight * k);
+    c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+    for (const q of [0.72, 0.6, 0.5, 0.4]) { const d = c.toDataURL("image/jpeg", q); if (d.length < 45000) return d; }
+  }
+  return "";
+}
+$("#revPhoto").addEventListener("change", async e => {
+  const f = e.target.files[0]; revFoto = "";
+  $("#revPreview").hidden = true;
+  if (!f) return;
+  try { revFoto = await compress(f); } catch(err) { revFoto = ""; }
+  if (revFoto) { $("#revPreview").src = revFoto; $("#revPreview").hidden = false; }
+});
+
+$("#revForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, d = Object.fromEntries(new FormData(f));
+  const errs = {};
+  if (!revStars) errs.estrellas = "Elige cuántas estrellas le das.";
+  if ((d.nombre||"").trim().length < 2) errs.nombre = "Escribe tu nombre.";
+  if ((d.ciudad||"").trim().length < 3) errs.ciudad = "Escribe tu ciudad.";
+  if ((d.texto||"").trim().length < 10) errs.texto = "Cuéntanos un poco más (mínimo 10 letras).";
+  if (!d.consent) errs.consent = "Necesitamos tu autorización para publicarla.";
+  $$("[data-rev]").forEach(s => s.textContent = errs[s.dataset.rev] || "");
+  if (Object.keys(errs).length) return;
+  const btn = $("#revSubmit"); btn.disabled = true; btn.textContent = "Enviando…";
+  const review = { tipo: "resena", nombre: d.nombre.trim(), ciudad: d.ciudad.trim(), estrellas: revStars,
+    texto: d.texto.trim(), celular: (d.celular||"").replace(/\D/g,""), foto: revFoto };
+  try { await fetch(CONFIG.SHEETS_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(review)}); }
+  catch(err) { console.warn("No se pudo enviar la reseña", err); }
+  f.hidden = true; $("#revThanks").hidden = false;
+});
 
 // Envío del pedido
 $("#orderForm").addEventListener("submit", async e => {
