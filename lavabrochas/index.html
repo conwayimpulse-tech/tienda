@@ -21,9 +21,11 @@
   --r:18px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-bottom:92px;overflow-x:hidden}
-img{max-width:100%;display:block}
+/* Fondo propio: caras de mujeres en línea, muy suave para no quitar atención */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url(img/fondo-mujeres.svg) 0 0/250px 250px repeat;opacity:.12}
+img{max-width:100%;height:auto;display:block}
 a{color:var(--rose-dark)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
 h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;text-wrap:balance;color:var(--wine)}
@@ -36,7 +38,8 @@ section{padding:48px 0}
 .kicker{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-dark)}
 
 /* ---- Barra con contador de despacho ---- */
-.topbar{position:sticky;top:0;z-index:30;background:var(--wine);color:#fff;font-size:14px;text-align:center;padding:9px 12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+.headfix{position:sticky;top:0;z-index:30;box-shadow:0 6px 16px -12px rgba(90,31,46,.5)}
+.topbar{background:var(--wine);color:#fff;font-size:14px;text-align:center;padding:9px 12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
 .clock{display:inline-flex;gap:3px;font-variant-numeric:tabular-nums;font-weight:800}
 .clock span{background:#fff;color:var(--wine);border-radius:6px;padding:1px 6px;min-width:30px;text-align:center}
 .clock i{font-style:normal;opacity:.7}
@@ -44,10 +47,10 @@ section{padding:48px 0}
 
 /* ---- Cinta de beneficios ---- */
 .ticker{background:var(--rose-soft);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;font-size:13.5px;font-weight:600;color:var(--wine)}
-.ticker div{display:inline-block;padding:8px 0;animation:tick 28s linear infinite}
+.ticker{background:linear-gradient(90deg,#ffd3de,#ffe9ef,#ffd3de)}
+.ticker div{display:inline-block;padding:8px 0;animation:tick 26s linear infinite;will-change:transform}
 .ticker span{margin:0 22px}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.ticker div{animation:none}}
+@keyframes tick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
 /* ---- Héroe ---- */
 .hero{padding:24px 0 40px;background:radial-gradient(1200px 500px at 80% -10%,#ffd6e0 0%,transparent 60%),radial-gradient(800px 400px at -10% 40%,#ffe9d9 0%,transparent 60%)}
@@ -57,7 +60,18 @@ section{padding:48px 0}
 .main-img{background:#fff;border-radius:22px;border:1px solid var(--line);aspect-ratio:1/1;overflow:hidden;box-shadow:0 30px 60px -35px rgba(193,58,94,.45)}
 .main-img img{width:100%;height:100%;object-fit:contain}
 .sticker{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--wine);font-weight:800;font-size:13px;border-radius:99px;padding:7px 12px;transform:rotate(-6deg);box-shadow:0 6px 16px -8px rgba(0,0,0,.35)}
-.sticker2{left:auto;right:14px;background:var(--rose-dark);color:#fff;transform:rotate(5deg)}
+/* Sello de envío gratis: estrella con latido */
+.shipbadge{position:absolute;top:8px;right:8px;width:112px;height:112px;display:grid;place-items:center;text-align:center;color:#fff;
+  background:radial-gradient(circle at 35% 30%,#ff6f97 0%,#e0346a 55%,#b3184d 100%);
+  clip-path:polygon(50.0% 0.0%,59.6% 8.1%,71.7% 5.0%,76.8% 16.4%,89.1% 18.8%,88.7% 31.3%,98.7% 38.9%,93.0% 50.0%,98.7% 61.1%,88.7% 68.7%,89.1% 81.2%,76.8% 83.6%,71.7% 95.0%,59.6% 91.9%,50.0% 100.0%,40.4% 91.9%,28.3% 95.0%,23.2% 83.6%,10.9% 81.2%,11.3% 68.7%,1.3% 61.1%,7.0% 50.0%,1.3% 38.9%,11.3% 31.3%,10.9% 18.8%,23.2% 16.4%,28.3% 5.0%,40.4% 8.1%);
+  animation:beat 1.6s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(179,24,77,.45))}
+.shipbadge div{line-height:1;font-weight:800;transform:rotate(8deg)}
+.shipbadge .s1{font-size:22px}
+.shipbadge .s2{font-size:13px;letter-spacing:.04em}
+.shipbadge .s3{font-size:21px;font-family:var(--f-display);font-style:italic}
+.shipbadge .s4{font-size:8.5px;font-weight:700;opacity:.95;margin-top:3px;letter-spacing:.02em}
+@keyframes beat{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.09) rotate(-4deg)}}
+@media(max-width:480px){.shipbadge{width:104px;height:104px}.shipbadge .s3{font-size:18px}.shipbadge .s1{font-size:19px}}
 .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .thumbs button{padding:0;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;aspect-ratio:1/1;overflow:hidden}
 .thumbs button[aria-current="true"]{border-color:var(--rose-dark)}
@@ -142,7 +156,7 @@ input:focus,select:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:left}
 .step-n{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rose-dark));color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:10px}
 .card p{margin:6px 0 0;color:var(--muted)}
-.pinkband{background:var(--rose-soft)}
+.pinkband{background:rgba(253,228,234,.82)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
 .split img{border-radius:var(--r);background:#fff;box-shadow:0 24px 50px -34px rgba(90,31,46,.5)}
@@ -195,6 +209,7 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
 <body>
 
 <!-- Contador real: tiempo que queda para entrar en el próximo despacho -->
+<div class="headfix">
 <div class="topbar" id="topbar">
   <span id="cutLabel">⏱ Pide en</span>
   <span class="clock" aria-live="off"><span id="hh">00</span><i>:</i><span id="mm">00</span><i>:</i><span id="ss">00</span></span>
@@ -202,6 +217,7 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
 </div>
 
 <div class="ticker" aria-hidden="true"><div id="tickerInner"><span>💵 Pagas al recibir</span><span>🚚 Envío GRATIS a toda Colombia</span><span>💗 Precio de lanzamiento</span><span>🎁 Ideal para regalar en Navidad</span><span>🛡️ Garantía incluida</span><span>💬 Atención por WhatsApp</span></div></div>
+</div>
 
 <!-- ============ HÉROE ============ -->
 <header class="hero">
@@ -209,7 +225,7 @@ footer h4{color:#fff;margin:0 0 6px;font-size:14px}
     <div class="gallery">
       <div class="main-img"><img id="mainImg" src="img/producto.webp" alt="Lavabrochas eléctrico rosado con brochas dentro del vaso y su caja" width="1000" height="1000"></div>
       <span class="sticker">💗 Precio de lanzamiento</span>
-      <span class="sticker sticker2">Envío GRATIS</span>
+      <div class="shipbadge" aria-label="Envío gratis a toda Colombia"><div><div class="s1">🚚</div><div class="s2">ENVÍO</div><div class="s3">¡Gratis!</div><div class="s4">TODA COLOMBIA</div></div></div>
       <div class="thumbs" role="group" aria-label="Fotos del producto">
         <button type="button" aria-current="true" data-src="img/producto.webp" data-alt="Lavabrochas eléctrico rosado con su caja"><img src="img/producto.webp" alt=""></button>
         <button type="button" data-src="img/modos.webp" data-alt="Modo automático y modo manual, con el antes y después de una brocha y una esponja"><img src="img/modos.webp" alt=""></button>

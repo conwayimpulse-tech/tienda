@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="280" height="280" viewBox="0 0 280 280">
+  <!-- Patrón propio de Conway: caras de mujeres en línea, rosa y vino. Se repite como fondo. -->
+  <defs>
+    <g id="cara" stroke="#5a1f2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-5" y="14" width="10" height="14" fill="#fff"/>
+      <ellipse cx="0" cy="0" rx="16" ry="19" fill="#fff"/>
+      <path d="M-10,2 q3.5,3 7,0 M3,2 q3.5,3 7,0" fill="none" stroke-width="1.8"/>
+      <path d="M-4,10 q4,4 8,0" fill="none" stroke-width="1.8"/>
+      <circle cx="-10" cy="8" r="2.8" fill="#ee8aa3" stroke="none"/>
+      <circle cx="10" cy="8" r="2.8" fill="#ee8aa3" stroke="none"/>
+    </g>
+
+    <!-- A: pelo largo rosado, blusa a rayas -->
+    <g id="a" stroke="#5a1f2e" stroke-width="2" stroke-linejoin="round">
+      <path d="M-24,6 C-30,-32 30,-32 24,6 L28,38 C10,44 -10,44 -28,38 Z" fill="#ee8aa3"/>
+      <path d="M-26,54 C-24,34 24,34 26,54 Z" fill="#fff"/>
+      <path d="M-24,44 H24 M-25,50 H25" stroke="#ee8aa3" stroke-width="3"/>
+      <use xlink:href="#cara"/>
+      <path d="M-16,-4 C-14,-22 10,-25 16,-6 C6,-13 -6,-13 -16,-4 Z" fill="#ee8aa3"/>
+    </g>
+
+    <!-- B: corte bob vino, blusa rosada -->
+    <g id="b" stroke="#5a1f2e" stroke-width="2" stroke-linejoin="round">
+      <path d="M-22,-2 C-26,-30 26,-30 22,-2 L22,22 L-22,22 Z" fill="#5a1f2e"/>
+      <path d="M-26,54 C-24,34 24,34 26,54 Z" fill="#f6b8c8"/>
+      <use xlink:href="#cara"/>
+      <path d="M-17,-1 C-12,-25 18,-23 17,3 C8,-10 -6,-13 -17,-1 Z" fill="#5a1f2e"/>
+    </g>
+
+    <!-- C: pelo rizado vino, blusa con puntos -->
+    <g id="c" stroke="#5a1f2e" stroke-width="2" stroke-linejoin="round">
+      <g fill="#5a1f2e">
+        <circle cx="-17" cy="-8" r="9"/><circle cx="-10" cy="-20" r="10"/><circle cx="4" cy="-24" r="10"/>
+        <circle cx="16" cy="-14" r="9"/><circle cx="20" cy="2" r="8"/><circle cx="-21" cy="6" r="7"/>
+      </g>
+      <path d="M-26,54 C-24,34 24,34 26,54 Z" fill="#fff"/>
+      <g fill="#ee8aa3" stroke="none"><circle cx="-14" cy="46" r="1.8"/><circle cx="-4" cy="49" r="1.8"/><circle cx="6" cy="45" r="1.8"/><circle cx="15" cy="49" r="1.8"/></g>
+      <use xlink:href="#cara"/>
+      <path d="M-15,-6 C-10,-18 10,-18 15,-6 C8,-11 -8,-11 -15,-6 Z" fill="#5a1f2e"/>
+    </g>
+
+    <!-- D: pelo en línea con ondas y balaca rosada -->
+    <g id="d" stroke="#5a1f2e" stroke-width="2" stroke-linejoin="round" fill="none">
+      <path d="M-23,4 C-28,-30 28,-30 23,4 L25,30 C8,36 -8,36 -25,30 Z" fill="#fff"/>
+      <path d="M-20,16 q4,-4 8,0 M12,16 q4,-4 8,0 M-21,24 q4,-4 8,0 M13,24 q4,-4 8,0" stroke-width="1.6"/>
+      <path d="M-26,54 C-24,34 24,34 26,54 Z" fill="#fff"/>
+      <path d="M-20,44 q5,-4 10,0 t10,0 t10,0 t10,0" stroke-width="1.6"/>
+      <use xlink:href="#cara"/>
+      <path d="M-15,-6 C-12,-21 12,-21 15,-6" fill="#fff"/>
+      <path d="M-17,-9 C-10,-22 10,-22 17,-9" stroke="#ee8aa3" stroke-width="4.5"/>
+    </g>
+  </defs>
+
+  <use xlink:href="#a" x="50" y="58"/>
+  <use xlink:href="#b" x="140" y="70"/>
+  <use xlink:href="#c" x="230" y="52"/>
+  <use xlink:href="#d" x="95" y="190"/>
+  <use xlink:href="#a" x="185" y="200"/>
+  <use xlink:href="#b" x="5" y="205"/>
+  <use xlink:href="#b" x="285" y="205"/>
+
+  <!-- Puntos decorativos -->
+  <g fill="#ee8aa3">
+    <circle cx="96" cy="120" r="2"/><circle cx="104" cy="128" r="2"/><circle cx="90" cy="132" r="2"/>
+    <circle cx="250" cy="140" r="2"/><circle cx="258" cy="150" r="2"/><circle cx="244" cy="154" r="2"/>
+    <circle cx="140" cy="262" r="2"/><circle cx="150" cy="270" r="2"/>
+  </g>
+</svg>
